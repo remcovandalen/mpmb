@@ -1,14 +1,16 @@
-var iFileName = "pub_20201117_TCoE.js";
+var iFileName = "pub_20201117_TCoE_fighting_styles.js";
 RequiredSheetVersion(13);
 
-// Define the source
-SourceList.TCoE={
-	name : "Tasha's Cauldron of Everything",
-	abbreviation : "TCoE",
-	group : "Primary Sources",
-	url : "https://dnd.wizards.com/products/tabletop-games/rpg-products/tashas-cauldron-everything",
-	date : "2020/11/17"
-};
+if (!SourceList.TCoE) {
+	// Define the source
+	SourceList.TCoE={
+		name : "Tasha's Cauldron of Everything",
+		abbreviation : "TCoE",
+		group : "Primary Sources",
+		url : "https://dnd.wizards.com/products/tabletop-games/rpg-products/tashas-cauldron-everything",
+		date : "2020/11/17"
+	};
+}
 
 // HACK: Overwrites a fighting style if one already exists with the same name.
 function AddOrOverwriteFightingStyle(classArr, fsName, fsObj) {
