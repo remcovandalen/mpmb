@@ -4,10 +4,13 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<!--<meta http-equiv="Content-Security-Policy" content="script-src 'self' code.jquery.com 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' *">-->
 	<title>Kingdom</title>
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans" />
 	<style>
+
+		* {
+			box-sizing: border-box;
+		}
 
 		html {
 			font-size: 62.5%; /* font-size 1em = 10px on default browser settings */
@@ -65,9 +68,9 @@
 		}
 
 		#skills td:nth-child(n+3) {
-			height: 120px;
+			height: 100px;
 			text-align: center;
-			width: 120px;
+			width: 100px;
 		}
 
 		#skills td:nth-child(n+4):before {
@@ -75,7 +78,7 @@
 			font-size: 24px;
 			left: -16px;
 			position: relative;
-			top: -10px;
+			top: -5px;
 		}
 
 		#skills td:last-child:before {
@@ -91,8 +94,8 @@
 		#skills td span.input:after {
 			display: inline-block;
 			background: #ddd;
-			width: 80px;
-			height: 80px;
+			width: 60px;
+			height: 60px;
 			position: relative;
 			text-align: center;
 		}
@@ -122,11 +125,11 @@
 		#skills td span.input input {
 			background: transparent;
 			border: none;
-			font-size: 40px;
-			height: 80px;
+			font-size: 30px;
+			height: 60px;
 			outline: none;
 			text-align: center;
-			width: 80px;
+			width: 60px;
 		}
 
 		#advisors .container {
@@ -228,7 +231,79 @@
 			border: 1px solid #000;
 			border-radius: 5px;
 			flex: 0 0 300px;
+			padding: 10px;
+		}
+
+		#policies .container div.policy div.card {
+			background-color: #ddd;
+			border: 1px solid #000;
+			border-radius: 5px;
 			padding: 5px;
+			text-align: center;
+		}
+
+		#policies .container div.policy div.card div.name {
+			background-color: #000;
+			border: 1px solid gold;
+			border-radius: 10px;
+			color: gold;
+			display: inline-block;
+			font-weight: bold;
+			margin-bottom: 250px;
+			padding: 2px 5px;
+		}
+
+		#policies .container div.policy div.card div.category {
+			background-color: #fff;
+			border: 1px solid #000;
+			border-radius: 3px;
+			font-size: 1.4rem;
+			font-weight: bold;
+			padding: 2px 5px;
+			text-align: left;
+		}
+
+		#policies .container div.policy div.card div.infobox {
+			background-color: #fff;
+			border: 1px solid #000;
+			border-radius: 3px;
+			font-size: 1.4rem;
+			height: 120px;
+			overflow: hidden;
+			padding: 2px 5px;
+			position: relative;
+			text-align: left;
+		}
+
+		#policies .container div.policy div.card div.infobox span.flavor-text {
+			display: block;
+			font-style: italic;
+		}
+
+		#policies .container div.policy div.card div.infobox ul.stats {
+			bottom: 0;
+			list-style-position: outside;
+			list-style-type: none;
+			margin: 5px 0;
+			padding: 0;
+			position: absolute;
+		}
+
+		#policies .container div.policy div.button {
+			padding: 10px;
+			text-align: center;
+		}
+
+		#policies .container div.policy div.button button {
+			padding: 5px;
+		}
+
+		#policies .container div.policy div.button button:after {
+			content: "Activate";
+		}
+
+		#policies .container div.policy.active div.button button:after {
+			content: "Deactivate";
 		}
 
 		#buildings table tbody tr:nth-child(2n-1) {
@@ -249,27 +324,58 @@
 
 		#advisors div.advisor.advisor-1 .image {
 			background-image: url(https://images.squarespace-cdn.com/content/v1/530bb19ae4b0f46761869858/1516836355605-EG1MS5NPFCIXS2S4VZWC/Chronicler+Pirate+-+Bob+kehl.jpg);
+			background-position: top;
 			background-size: cover;
 		}
 
 		#advisors div.advisor.advisor-3 .image {
 			background-image: url(https://i.pinimg.com/originals/39/29/c7/3929c79a5b7be03bf4c77b75e2a3d701.jpg);
+			background-position: top;
 			background-size: cover;
 		}
 
 		#advisors div.advisor.advisor-12 .image {
 			background-image: url(https://i.pinimg.com/236x/e4/4f/37/e44f37bcce5218807983e76325670cac.jpg);
+			background-position: top;
 			background-size: cover;
 		}
 
 		#advisors div.advisor.advisor-14 .image {
 			background-image: url(https://i.pinimg.com/236x/73/26/53/7326531f38c7afcbc4176efbe7c3cfb6--medieval-fantasy-guard-medieval.jpg);
+			background-position: top;
 			background-size: cover;
 		}
 
-		.policy-1 {
+		#policies div.policy.policy-1 .card {
 			background-image: url(https://c4.wallpaperflare.com/wallpaper/229/366/563/light-angel-armor-hammer-wallpaper-preview.jpg);
+			background-position: center;
+			background-size: cover;
 		}
+
+		#policies div.policy.policy-4 .card {
+			background-image: url(https://i.pinimg.com/originals/da/2a/93/da2a932f9020af4557968625b86c549c.jpg);
+			background-position: center;
+			background-size: cover;
+		}
+
+		#policies div.policy.policy-12 .card {
+			background-image: url(https://i.pinimg.com/originals/1a/9e/ed/1a9eedf41401f9fdced827ad831d017c.jpg);
+			background-position: center;
+			background-size: cover;
+		}
+
+		#policies div.policy.policy-22 .card {
+			background-image: url(https://static.wikia.nocookie.net/totalwar-ar/images/7/7f/Highwaymen.jpg/revision/latest?cb=20181229222915);
+			background-position: center;
+			background-size: cover;
+		}
+
+		#policies div.policy.policy-32 .card {
+			background-image: url(https://i.pinimg.com/originals/67/3c/46/673c461a75f0b09e1880e47acdf8a63a.jpg);
+			background-position: center;
+			background-size: cover;
+		}
+		
 	</style>
 </head>
 <body>
@@ -344,10 +450,7 @@
 			</table>
 		</fieldset>
 	</form>
-	<!--
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script>
 
 		//#region Skills
@@ -529,7 +632,10 @@
 			category: "Faith - Lawful",
 			flavorText: "Your followers are instilled with a sense of duty over their own desires.",
 			stats: { stability: 2, community: -2 },
-			special: "Nature +1 (Not when Neutral)"
+			special: {
+				func: function () { },
+				text: "Nature +1 (Not when Neutral)"
+			}
 		});
 		policies.push({
 			id: 2,
@@ -537,7 +643,10 @@
 			category: "Faith - Chaotic",
 			flavorText: "Freedom of expression and action are held in high regard.",
 			stats: { stability: -2, community: 2 },
-			special: "Arcane +1 (Not when Neutral)"
+			special: {
+				func: function () { },
+				text: "Arcane +1 (Not when Neutral)"
+			}
 		});
 		policies.push({
 			id: 3,
@@ -545,7 +654,10 @@
 			category: "Faith - Good",
 			flavorText: "Priests speak of hope, peace, and forgiveness",
 			stats: { loyalty: 2, military: -2 },
-			special: "Relations +1 (Not when Neutral)"
+			special: {
+				func: function () { },
+				text: "Relations +1 (Not when Neutral)"
+			}
 		});
 		policies.push({
 			id: 4,
@@ -553,7 +665,10 @@
 			category: "Faith - Evil",
 			flavorText: "People are encouraged to defend their homes and possessions from the wicked.",
 			stats: { loyalty: -2, military: 2 },
-			special: "Espionage +1 (Not when Neutral)"
+			special: {
+				func: function () { },
+				text: "Espionage +1 (Not when Neutral)"
+			}
 		});
 		policies.push({
 			id: 11,
@@ -1149,7 +1264,15 @@
 
 		//#endregion
 
-		var columns = 5;
+		var applyStats = function (stats, inputClassName) {
+			if (stats) {
+				for (var stat in stats) {
+					input = document.querySelector("#skills tr." + stat + " input.input-" + inputClassName);
+					input.value = input.valueAsNumber + stats[stat];
+				}
+
+			}
+		};
 
 		var calculateModifier = function (stat) {
 			var modifier = Math.floor(stat / 2) - 5;
@@ -1355,14 +1478,30 @@
 				span.className = "flavor-text";
 				span.appendChild(document.createTextNode(policy.flavorText));
 				div.appendChild(span);
-				span = document.createElement("span");
-				span.className = "stats";
-				// TODO: Stats
-				//span.appendChild(document.createTextNode(advisor.stats));
-				div.appendChild(span);
+				var ul = document.createElement("ul");
+				ul.className = "stats";
+				for (var stat in policy.stats) {
+					var skill = skills.find(function (s) { return s.value == stat; });
+					if (skill) {
+						var li = document.createElement("li");
+						var statValue = parseInt(policy.stats[stat]);
+						li.appendChild(document.createTextNode(skill.name + " " + (statValue >= 0 ? "+" : "") + statValue));
+						ul.appendChild(li);
+					}
+				}
+				div.appendChild(ul);
 				card.appendChild(div);
 
 				policyDiv.appendChild(card);
+
+				div = document.createElement("div");
+				div.className = "button";
+
+				var button = document.createElement("button");
+				button.type = "button";
+				div.appendChild(button);
+
+				policyDiv.appendChild(div);
 
 				container.appendChild(policyDiv);
 			}
@@ -1466,6 +1605,43 @@
 			}
 		};
 
+		var getBuiltBuildings = function () {
+			var selectedBuildings = [];
+			$("#buildings table tbody tr td input:checked").each(function (i, el) {
+				var building = $(el).data("building");
+				selectedBuildings.push(building.id);
+			});
+			return selectedBuildings.join();
+		};
+
+		var getLuxeries = function () {
+			var luxeries = [];
+			for (var i = 0; i < skills.length; ++i) {
+				var skill = skills[i];
+				var input = document.querySelector("#skills tr." + skill.value + " input.input-luxury")
+				if (input.valueAsNumber != 0) {
+					luxeries.push(input.valueAsNumber);
+				} else {
+					luxeries.push("");
+				}
+			}
+			return luxeries.join();
+		};
+
+		var getOthers = function () {
+			var others = [];
+			for (var i = 0; i < skills.length; ++i) {
+				var skill = skills[i];
+				var input = document.querySelector("#skills tr." + skill.value + " input.input-other")
+				if (input.valueAsNumber != 0) {
+					others.push(input.valueAsNumber);
+				} else {
+					others.push("");
+				}
+			}
+			return others.join();
+		};
+
 		var getSelectedAdvisors = function () {
 			var selectedAdvisors = [];
 			for (var i = 0; i < skills.length; ++i) {
@@ -1479,13 +1655,13 @@
 			return selectedAdvisors.join();
 		};
 
-		var getBuiltBuildings = function () {
-			var selectedBuildings = [];
-			$("#buildings table tbody tr td input:checked").each(function (i, el) {
-				var building = $(el).data("building");
-				selectedBuildings.push(building.id);
+		var getSelectedPolicies = function () {
+			var selectedPolicies = [];
+			$("#policies .container div.policy.active").each(function (i, el) {
+				var policy = $(el).data("policy");
+				selectedPolicies.push(policy.id);
 			});
-			return selectedBuildings.join();
+			return selectedPolicies.join();
 		};
 
 		var parseQueryString = function () {
@@ -1500,11 +1676,35 @@
 
 			}
 
+			if (usp.has("l")) {
+				var l = usp.get("l");
+				if (l) {
+					var luxuriesList = l.split(",");
+					setLuxuries(luxuriesList);
+				}
+			}
+
+			if (usp.has("o")) {
+				var o = usp.get("o");
+				if (o) {
+					var otherList = o.split(",");
+					setOthers(otherList);
+				}
+			}
+
 			if (usp.has("a")) {
 				var a = usp.get("a");
 				if (a) {
 					var advisorList = a.split(",");
 					setSelectedAdvisors(advisorList);
+				}
+			}
+
+			if (usp.has("p")) {
+				var p = usp.get("p");
+				if (p) {
+					var policiesList = p.split(",");
+					setSelectedPolicies(policiesList);
 				}
 			}
 
@@ -1530,8 +1730,39 @@
 			}
 		};
 
+		var setLuxuries = function (luxuriesList) {
+			if (luxuriesList) {
+				var index = 0;
+				for (var i = 0; i < skills.length; ++i) {
+					var skill = skills[i];
+					var input = document.querySelector("#skills tr." + skill.value + " input.input-luxury")
+					var luxury = luxuriesList[index++];
+					if (luxury) {
+						input.value = luxury;
+					} else {
+						input.value = "0";
+					}
+				}
+			}
+		};
+
+		var setOthers = function (otherList) {
+			if (otherList) {
+				var index = 0;
+				for (var i = 0; i < skills.length; ++i) {
+					var skill = skills[i];
+					var input = document.querySelector("#skills tr." + skill.value + " input.input-other")
+					var other = otherList[index++];
+					if (other) {
+						input.value = other;
+					} else {
+						input.value = "0";
+					}
+				}
+			}
+		};
+
 		var setSelectedAdvisors = function (advisorList) {
-			console.log("advisorList", advisorList);
 			if (advisorList) {
 				var index = 0;
 				for (var i = 0; i < skills.length; ++i) {
@@ -1543,14 +1774,24 @@
 			}
 		};
 
+		var setSelectedPolicies = function (policiesList) {
+			if (policiesList) {
+				$("#policies .container div.policy").each(function (i, el) {
+					$(el).removeClass("active");
+				});
+
+				for (var i = 0; i < policiesList.length; ++i) {
+					$("#policies .container div.policy.policy-" + policiesList[i]).addClass("active");
+				}
+			}
+		};
+
 		var updateStats = function () {
 			var input;
 
 			$("#skills input.input-advisor").val("0");
 			$("#skills input.input-buildings").val("0");
 			$("#skills input.input-policies").val("0");
-			$("#skills input.input-luxury").val("0");
-			$("#skills input.input-other").val("0");
 			$("#skills input.input-total").val("0");
 
 			for (var i = 0; i < skills.length; ++i) {
@@ -1567,13 +1808,19 @@
 				}
 			}
 
+			$("#policies .container div.policy.active").each(function (i, el) {
+				var policy = $(el).data("policy");
+				applyStats(policy.stats, "policies");
+				if (policy.special) {
+					if (policy.special.func) {
+						policy.special.func();
+					}
+				}
+			});
 
 			$("#buildings table tbody tr td input:checked").each(function (i, el) {
 				var building = $(el).data("building");
-				for (var stat in building.stats) {
-					input = document.querySelector("#skills tr." + stat + " input.input-buildings");
-					input.value = input.valueAsNumber + building.stats[stat];
-				}
+				applyStats(building.stats, "buildings");
 			});
 
 			$("#skills tbody tr").each(function (i, el) {
@@ -1611,7 +1858,7 @@
 			input = document.getElementById("inputUnrest");
 			var unrest = input.valueAsNumber;
 
-			var url = "kingdom.html?v=1.0&u=" + unrest + "&a=" + getSelectedAdvisors() + "&b=" + getBuiltBuildings();
+			var url = "kingdom.html?v=1.0&u=" + unrest + "&l=" + getLuxeries() + "&o=" + getOthers() + "&a=" + getSelectedAdvisors() + "&p=" + getSelectedPolicies() + "&b=" + getBuiltBuildings();
 			history.replaceState(null, "Kingdom", url);
 
 		};
@@ -1622,7 +1869,22 @@
 			createPolicies(policies);
 			createBuildings(buildings);
 
+			$("#skills input.input-luxury").val("0");
+			$("#skills input.input-other").val("0");
+
 			parseQueryString();
+
+			$("#skills tbody tr td input.input-luxury").on({
+				"change": function () {
+					updateStats();
+				}
+			});
+
+			$("#skills tbody tr td input.input-other").on({
+				"change": function () {
+					updateStats();
+				}
+			});
 
 			$("#advisors div.advisor select").on({
 				"change": function (e) {
@@ -1633,6 +1895,14 @@
 							}
 						}
 					});
+					updateStats();
+				}
+			});
+
+			$("#policies .container div.policy div.button button").on({
+				"click": function () {
+
+					$(this).parents("div.policy").toggleClass("active");
 					updateStats();
 				}
 			});
@@ -1652,13 +1922,13 @@
 			updateStats();
 		});
 
-				//Unrest 	Modifier
-				//Serene + 1
-				//Stable 	0
-				//Worried - 1
-				//Troubled - 2
-				//Rioting - 3
-				//Crumbling - 4
+		//Unrest 	Modifier
+		//Serene + 1
+		//Stable 	0
+		//Worried - 1
+		//Troubled - 2
+		//Rioting - 3
+		//Crumbling - 4
 	</script>
 </body>
 </html>
