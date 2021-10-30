@@ -1,0 +1,1656 @@
+<html>
+<head>
+	<title>Kingdom</title>
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+	<style>
+
+		html {
+			font-size: 62.5%; /* font-size 1em = 10px on default browser settings */
+		}
+
+		body {
+			font-family: Open Sans;
+			font-size: 1.6rem;
+		}
+
+		fieldset {
+			border: none;
+		}
+
+		fieldset ~ fieldset {
+			margin-top: 20px;
+		}
+
+		fieldset > table {
+			margin: 0 auto;
+		}
+
+		fieldset legend {
+			font-size: 2.4rem;
+			margin: 0 auto 10px;
+		}
+
+		table thead tr th {
+			text-align: center;
+		}
+
+		th .subtitle,
+		td .subtitle {
+			font-size: 1.2rem;
+		}
+
+		table thead tr th .subtitle {
+			font-size: 1.2rem;
+		}
+
+		#main-stats,
+		#skills {
+			margin: 0 auto 20px;
+		}
+
+		#main-stats input[type=number],
+		#skills input[type=number] {
+			appearance: textfield;
+		}
+
+		#skills input[type=number] {
+		}
+
+		#skills td {
+		}
+
+		#skills td:nth-child(n+3) {
+			height: 120px;
+			text-align: center;
+			width: 120px;
+		}
+
+		#skills td:nth-child(n+4):before {
+			content: "+";
+			font-size: 24px;
+			left: -16px;
+			position: relative;
+			top: -10px;
+		}
+
+		#skills td:last-child:before {
+			content: "=";
+		}
+
+		#skills td span.position {
+			font-size: 75%;
+		}
+
+		#skills td span.input,
+		#skills td span.input:before,
+		#skills td span.input:after {
+			display: inline-block;
+			background: #ddd;
+			width: 80px;
+			height: 80px;
+			position: relative;
+			text-align: center;
+		}
+
+		#skills td span.input {
+			position: relative;
+			text-align: center;
+		}
+
+		#skills td span.input:before,
+		#skills td span.input:after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+		}
+
+		#skills td span.input:before {
+			transform: rotate(30deg);
+		}
+
+		#skills td span.input:after {
+			transform: rotate(60deg);
+		}
+
+		#skills td span.input input {
+			background: transparent;
+			border: none;
+			font-size: 40px;
+			height: 80px;
+			outline: none;
+			text-align: center;
+			width: 80px;
+		}
+
+		#advisors .container {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 20px;
+			justify-content: center;
+		}
+
+		#advisors .container div.advisor {
+			background-color: #000;
+			border: 1px solid #000;
+			border-radius: 5px;
+			flex: 0 0 300px;
+			padding: 5px;
+		}
+
+		#advisors .container div.advisor div.card {
+			background-color: darkgreen;
+			border: 1px solid #000;
+			border-radius: 5px;
+			padding: 5px;
+		}
+
+		#advisors .container div.advisor div.card div.name {
+			background-color: #fff;
+			border: 1px solid #000;
+			border-radius: 3px;
+			font-weight: bold;
+			padding: 2px 5px;
+		}
+
+		#advisors .container div.advisor div.card div.image {
+			background-color: #ddd;
+			border: 1px solid #000;
+			border-radius: 3px;
+			height: 220px;
+		}
+
+		#advisors .container div.advisor div.card div.race-alignment {
+			background-color: #fff;
+			border: 1px solid #000;
+			border-radius: 3px;
+			font-size: 1.4rem;
+			font-weight: bold;
+			padding: 2px 5px;
+		}
+
+		#advisors .container div.advisor div.card div.race-alignment .race:after {
+			content: "\2014";
+		}
+
+		#advisors .container div.advisor div.card div.race-alignment .race:after,
+		#advisors .container div.advisor div.card div.race-alignment .alignment {
+			padding-left: 5px;
+		}
+
+		#advisors .container div.advisor div.card div.abilities {
+			background-color: #fff;
+			border: 1px solid #000;
+			border-radius: 3px;
+			font-size: 1.4rem;
+			padding: 2px 5px;
+		}
+
+		#advisors .container div.advisor div.card div.abilities span {
+			display: block;
+		}
+
+		#advisors .container div.advisor div.card div.abilities span:before {
+			content: attr(data-ability) ": ";
+			text-transform: capitalize;
+		}
+
+		#advisors .container div.advisor div.card div.abilities span:after {
+			content: " (" attr(data-mod) ")";
+		}
+
+		#advisors .container div.advisor div.position {
+			padding: 10px;
+			text-align: center;
+		}
+
+		#advisors .container div.advisor div.position select {
+			padding: 5px;
+		}
+
+		#policies .container {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 20px;
+			justify-content: center;
+		}
+
+		#policies .container div.policy {
+			background-color: #000;
+			border: 1px solid #000;
+			border-radius: 5px;
+			flex: 0 0 300px;
+			padding: 5px;
+		}
+
+		#buildings table tbody tr:nth-child(2n-1) {
+			background-color: #ddd;
+		}
+
+		#buildings table .tier1 td:first-child {
+			padding-left: 0;
+		}
+
+		#buildings table .tier2 td:first-child {
+			padding-left: 20px;
+		}
+
+		#buildings table .tier3 td:first-child {
+			padding-left: 40px;
+		}
+
+		#advisors div.advisor.advisor-1 .image {
+			background-image: url(https://images.squarespace-cdn.com/content/v1/530bb19ae4b0f46761869858/1516836355605-EG1MS5NPFCIXS2S4VZWC/Chronicler+Pirate+-+Bob+kehl.jpg);
+			background-size: cover;
+		}
+
+		#advisors div.advisor.advisor-3 .image {
+			background-image: url(https://i.pinimg.com/originals/39/29/c7/3929c79a5b7be03bf4c77b75e2a3d701.jpg);
+			background-size: cover;
+		}
+
+		#advisors div.advisor.advisor-12 .image {
+			background-image: url(https://i.pinimg.com/236x/e4/4f/37/e44f37bcce5218807983e76325670cac.jpg);
+			background-size: cover;
+		}
+
+		#advisors div.advisor.advisor-14 .image {
+			background-image: url(https://i.pinimg.com/236x/73/26/53/7326531f38c7afcbc4176efbe7c3cfb6--medieval-fantasy-guard-medieval.jpg);
+			background-size: cover;
+		}
+
+		.policy-1 {
+			background-image: url(https://c4.wallpaperflare.com/wallpaper/229/366/563/light-angel-armor-hammer-wallpaper-preview.jpg);
+		}
+	</style>
+</head>
+<body>
+	<form>
+		<table id="main-stats">
+			<thead>
+				<tr>
+					<th>
+						Kingdom DC<br />
+						<span class="subtitle">8 + Luxury</span>
+					</th>
+					<th>Luxury</th>
+					<th>Unrest</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<input id="inputKingdomDC" type="number" step="1" value="8" />
+					</td>
+					<td>
+						<input id="inputLuxury" type="number" step="1" value="0" />
+					</td>
+					<td>
+						<input id="inputUnrest" type="number" step="1" value="2" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table id="skills">
+			<thead>
+				<tr>
+					<th></th>
+					<th></th>
+					<th>Advisor</th>
+					<th>Buildings</th>
+					<th>Policies</th>
+					<th>Luxury</th>
+					<th>Other</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<fieldset id="advisors">
+			<legend>Advisors</legend>
+
+			<div class="container">
+			</div>
+		</fieldset>
+		<fieldset id="policies">
+			<legend>Policies</legend>
+
+			<div class="container">
+			</div>
+		</fieldset>
+		<fieldset id="buildings">
+			<legend>Buildings</legend>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Effect</th>
+						<th>KP Cost</th>
+						<th>Built</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</fieldset>
+	</form>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+
+		//#region Skills
+
+		var skills = [];
+		skills.push({
+			value: "community",
+			name: "Community",
+			position: "Regent (Cha)",
+			ability: "charisma"
+		});
+		skills.push({
+			value: "loyalty",
+			name: "Loyalty",
+			position: "Councilor (Wis)",
+			ability: "wisdom"
+		});
+		skills.push({
+			value: "military",
+			name: "Military",
+			position: "General (Str)",
+			ability: "strength"
+		});
+		skills.push({
+			value: "economy",
+			name: "Economy",
+			position: "Treasurer (Int)",
+			ability: "intelligence"
+		});
+		skills.push({
+			value: "stability",
+			name: "Stability",
+			position: "Marshall (Con)",
+			ability: "constitution"
+		});
+		skills.push({
+			value: "divine",
+			name: "Divine",
+			position: "High Priest (Wis)",
+			ability: "wisdom"
+		});
+		skills.push({
+			value: "arcane",
+			name: "Arcane",
+			position: "Magister (Int)",
+			ability: "intelligence"
+		});
+		skills.push({
+			value: "nature",
+			name: "Nature",
+			position: "Naturalist (Wis)",
+			ability: "wisdom"
+		});
+		skills.push({
+			value: "relations",
+			name: "Relations",
+			position: "Gr. Diplomat (Cha)",
+			ability: "charisma"
+		});
+		skills.push({
+			value: "espionage",
+			name: "Espionage",
+			position: "Spymaster (Dex)",
+			ability: "dexterity"
+		});
+
+		//#endregion
+
+		//#region Advisors
+
+		var advisors = [];
+		advisors.push({
+			id: 1,
+			name: "Kristen Waverunner",
+			race: "Human",
+			alignment: "Chaotic Neutral",
+			npc: false,
+			dead: false,
+			strength: 12,
+			dexterity: 14,
+			constitution: 10,
+			intelligence: 14,
+			wisdom: 14,
+			charisma: 14
+		});
+		advisors.push({
+			id: 2,
+			name: "Junior",
+			race: "Warforged",
+			alignment: "???",
+			npc: false,
+			dead: false,
+			strength: 10,
+			dexterity: 20,
+			constitution: 16,
+			intelligence: 7,
+			wisdom: 14,
+			charisma: 14
+		});
+		advisors.push({
+			id: 3,
+			name: "Salazar Paleheart",
+			race: "Halfling",
+			alignment: "Chaotic Evil",
+			npc: false,
+			dead: false,
+			strength: 10,
+			dexterity: 14,
+			constitution: 14,
+			intelligence: 10,
+			wisdom: 12,
+			charisma: 20
+		});
+		advisors.push({
+			id: 11,
+			name: "Jaruf Nighthall",
+			race: "Half-Elf",
+			alignment: "Neutral Good",
+			npc: true,
+			dead: false,
+			strength: 10,
+			dexterity: 15,
+			constitution: 12,
+			intelligence: 12,
+			wisdom: 16,
+			charisma: 12
+		});
+		advisors.push({
+			id: 12,
+			name: "Gilden Cidmol",
+			race: "Human",
+			alignment: "Neutral",
+			npc: true,
+			dead: false,
+			strength: 16,
+			dexterity: 14,
+			constitution: 12,
+			intelligence: 11,
+			wisdom: 10,
+			charisma: 14
+		});
+		advisors.push({
+			id: 13,
+			name: "Silvetta Taller",
+			race: "Human",
+			alignment: "Neutral Good",
+			npc: true,
+			dead: false,
+			strength: 10,
+			dexterity: 13,
+			constitution: 12,
+			intelligence: 12,
+			wisdom: 16,
+			charisma: 14
+		});
+		advisors.push({
+			id: 14,
+			name: "Rhalo Norlet",
+			race: "Human",
+			alignment: "Lawful Neutral",
+			npc: true,
+			dead: false,
+			strength: 14,
+			dexterity: 12,
+			constitution: 16,
+			intelligence: 12,
+			wisdom: 11,
+			charisma: 8
+		});
+
+		//#endregion
+
+		//#region Policies
+
+		var policies = [];
+		policies.push({
+			id: 1,
+			name: "Divine Purpose",
+			category: "Faith - Lawful",
+			flavorText: "Your followers are instilled with a sense of duty over their own desires.",
+			stats: { stability: 2, community: -2 },
+			special: "Nature +1 (Not when Neutral)"
+		});
+		policies.push({
+			id: 2,
+			name: "Spirit of Freedom",
+			category: "Faith - Chaotic",
+			flavorText: "Freedom of expression and action are held in high regard.",
+			stats: { stability: -2, community: 2 },
+			special: "Arcane +1 (Not when Neutral)"
+		});
+		policies.push({
+			id: 3,
+			name: "The Good Word",
+			category: "Faith - Good",
+			flavorText: "Priests speak of hope, peace, and forgiveness",
+			stats: { loyalty: 2, military: -2 },
+			special: "Relations +1 (Not when Neutral)"
+		});
+		policies.push({
+			id: 4,
+			name: "Show no Weakness",
+			category: "Faith - Evil",
+			flavorText: "People are encouraged to defend their homes and possessions from the wicked.",
+			stats: { loyalty: -2, military: 2 },
+			special: "Espionage +1 (Not when Neutral)"
+		});
+		policies.push({
+			id: 11,
+			name: "Conscription",
+			category: "Civilian Military",
+			flavorText: "Force strong men and women into military service.",
+			stats: { loyalty: 1, military: 2, community: -1 }
+		});
+		policies.push({
+			id: 12,
+			name: "Militia",
+			category: "Civilian Military",
+			flavorText: "Train willing townsfolk so they can defend their homes.",
+			stats: { loyalty: 1, military: 1 }
+		});
+		policies.push({
+			id: 21,
+			name: "Enforcers",
+			category: "Bandits",
+			flavorText: "Criminals are good at having things go their way, but bad at playing nice.",
+			stats: { loyalty: -2, military: 1, security: 2 }
+		});
+		policies.push({
+			id: 22,
+			name: "Highwaymen",
+			category: "Bandits",
+			flavorText: "Discretely allow bandits to work in your kingdom if they give you a cut.",
+			stats: { stability: -2, economy: 2, espionage: 1 }
+		});
+		policies.push({
+			id: 31,
+			name: "Dictatorship",
+			category: "Power Structure",
+			flavorText: "The King decides who wields power over the population.",
+			stats: { loyalty: 1, stability: 1 }
+		});
+		policies.push({
+			id: 32,
+			name: "Plutocracy",
+			category: "Power Structure",
+			flavorText: "Power is wielded by the most wealthy of the population.",
+			stats: { community: 1, economy: 1 }
+		});
+		policies.push({
+			id: 33,
+			name: "Republic",
+			category: "Power Structure",
+			flavorText: "Power is given to representatives chosen by the people.",
+			stats: { community: 1, loyalty: 1 }
+		});
+
+		//#endregion
+
+		//#region Buildings
+
+		var buildings = [];
+		buildings.push({
+			id: 1,
+			name: "Herbalist",
+			effect: "Nature +1, access to basic potions, poisons and alchemical items.",
+			stats: { nature: 1 },
+			cost: 20,
+			tier: 1
+		});
+		buildings.push({
+			id: 2,
+			name: "Alchemist",
+			effect: "Nature +1, access to advanced potions, poisons and alchemical items.",
+			stats: { nature: 1 },
+			cost: 25,
+			tier: 2
+		});
+		buildings.push({
+			id: 3,
+			name: "Laboratory",
+			effect: "Nature +1, access to expert potions, poisons and alchemical items.",
+			stats: { nature: 1 },
+			cost: 30,
+			tier: 3
+		});
+		buildings.push({
+			id: 4,
+			name: "Mage's Study",
+			effect: "Arcane +1, access to basic scrolls, mage's gear, and wands.",
+			stats: { arcane: 1 },
+			cost: 20,
+			tier: 1
+		});
+		buildings.push({
+			id: 5,
+			name: "Mage's Tower",
+			effect: "Arcane +1, access to advanced scrolls, mage's gear, and wands.",
+			stats: { arcane: 1 },
+			cost: 25,
+			tier: 2
+		});
+		buildings.push({
+			id: 6,
+			name: "Mage's Academy",
+			effect: "Arcane +1, access to expert scrolls, mage's gear, and wands.",
+			stats: { arcane: 1 },
+			cost: 30,
+			tier: 3
+		});
+		buildings.push({
+			id: 7,
+			name: "Inventor's Shop",
+			effect: "Community +1, access to basic tinker's items and mechanical devices.",
+			stats: { community: 1 },
+			cost: 20,
+			tier: 1
+		});
+		buildings.push({
+			id: 8,
+			name: "Artificer's Shop",
+			effect: "Military +1, access to advanced tinker's items and mechanical devices.",
+			stats: { military: 1 },
+			cost: 25,
+			tier: 2
+		});
+		buildings.push({
+			id: 9,
+			name: "Manufactorium",
+			effect: "Military +1, access to expert tinker's items and mechanical devices.",
+			stats: { military: 1 },
+			cost: 30,
+			tier: 3
+		});
+		buildings.push({
+			id: 10,
+			name: "Shrine",
+			effect: "Divine +1, access to basic healer's services.",
+			stats: { divine: 1 },
+			cost: 20,
+			tier: 1
+		});
+		buildings.push({
+			id: 11,
+			name: "Temple",
+			effect: "Divine +1, access to advanced healer's services.",
+			stats: { divine: 1 },
+			cost: 25,
+			tier: 1
+		});
+		buildings.push({
+			id: 12,
+			name: "Sanctury",
+			effect: "Divine +1, access to expert healer's services.",
+			stats: { divine: 1 },
+			cost: 30,
+			tier: 1
+		});
+		buildings.push({
+			id: 13,
+			name: "Smithy",
+			effect: "Military +1, access to basic metal weapons and equipment.",
+			stats: { military: 1 },
+			cost: 20,
+			tier: 1
+		});
+		buildings.push({
+			id: 14,
+			name: "Forge",
+			effect: "Military +1, access to advanced metal weapons and equipment.",
+			stats: { military: 1 },
+			cost: 25,
+			tier: 2
+		});
+		buildings.push({
+			id: 15,
+			name: "Foundry",
+			effect: "Military +1, access to expert metal weapons and equipment.",
+			stats: { military: 1 },
+			cost: 30,
+			tier: 3
+		});
+		buildings.push({
+			id: 16,
+			name: "Enchanter's Shop",
+			effect: "Arcane +1, access to basic generic magical items.",
+			stats: { arcane: 1 },
+			cost: 20,
+			tier: 1
+		});
+		buildings.push({
+			id: 17,
+			name: "Enchanter's Atelier",
+			effect: "Arcane +1, access to advanced generic magical items.",
+			stats: { arcane: 1 },
+			cost: 25,
+			tier: 2
+		});
+		buildings.push({
+			id: 18,
+			name: "Enchanter's Studio",
+			effect: "Arcane +1, access to expert generic magical items.",
+			stats: { arcane: 1 },
+			cost: 30,
+			tier: 3
+		});
+		buildings.push({
+			id: 19,
+			name: "Market",
+			effect: "Economy +1, access to basic trade items.",
+			stats: { economy: 1 },
+			cost: 20,
+			tier: 1
+		});
+		buildings.push({
+			id: 20,
+			name: "Bazaar",
+			effect: "Economy +1, access to advanced trade items.",
+			stats: { economy: 1 },
+			cost: 25,
+			tier: 2
+		});
+		buildings.push({
+			id: 21,
+			name: "Trade District",
+			effect: "Economy +1, access to expert trade items.",
+			stats: { economy: 1 },
+			cost: 30,
+			tier: 3
+		});
+		buildings.push({
+			id: 22,
+			name: "Hunter",
+			effect: "Nature +1, access to basic leather, hide, and wood gear.",
+			stats: { nature: 1 },
+			cost: 20,
+			tier: 1
+		});
+		buildings.push({
+			id: 23,
+			name: "Tannery",
+			effect: "Nature +1, access to advanced leather, hide, and wood gear.",
+			stats: { nature: 1 },
+			cost: 25,
+			tier: 2
+		});
+		buildings.push({
+			id: 24,
+			name: "Leather Workshop",
+			effect: "Nature +1, access to expert leather, hide, and wood gear.",
+			stats: { nature: 1 },
+			cost: 30,
+			tier: 3
+		});
+		buildings.push({
+			id: 25,
+			name: "Piers",
+			effect: "Community +1, access to rowing boats.",
+			stats: { community: 1 },
+			cost: 15,
+			tier: 1
+		});
+		buildings.push({
+			id: 26,
+			name: "Waterfront",
+			effect: "Economy +1, Relations +1, access to sailing boats.",
+			stats: { economy: 1, relations: 1 },
+			cost: 30,
+			tier: 2
+		});
+		buildings.push({
+			id: 27,
+			name: "Harbor",
+			effect: "Economy +2, access to galleys.",
+			stats: { economy: 2 },
+			cost: 35,
+			tier: 3
+		});
+		buildings.push({
+			id: 28,
+			name: "Stable",
+			effect: "Community +1, access to horses and other basic mounts.",
+			stats: { community: 1 },
+			cost: 15,
+			tier: 1
+		});
+		buildings.push({
+			id: 29,
+			name: "Cartwright",
+			effect: "Relations +1, access to advanced mounts and basic land vehicles.",
+			stats: { relations: 1 },
+			cost: 20,
+			tier: 2
+		});
+		buildings.push({
+			id: 30,
+			name: "Black Market",
+			effect: "Espionage +1, access to basic rare and dangerous wares.",
+			stats: { espionage: 1 },
+			cost: 20,
+			tier: 1
+		});
+		buildings.push({
+			id: 31,
+			name: "Smugglers' Den",
+			effect: "Espionage +1, Relations +1, Stability -1, access to advanced rare and dangerous wares.",
+			stats: { espionage: 1, relations: 1, stability: -1 },
+			cost: 25,
+			tier: 2
+		});
+		buildings.push({
+			id: 32,
+			name: "Thieves' Guild",
+			effect: "Espionage +2, Stability -1, access to expert rare and dangerous wares.",
+			stats: { espionage: 1, relations: 1, stability: -1 },
+			cost: 30,
+			tier: 3
+		});
+		buildings.push({
+			id: 33,
+			name: "Brewery",
+			effect: "Stability +1",
+			stats: { stability: 1 },
+			cost: 10,
+			tier: 1
+		});
+		buildings.push({
+			id: 34,
+			name: "Winery",
+			effect: "Stability +1",
+			stats: { stability: 1 },
+			cost: 15,
+			tier: 2
+		});
+		buildings.push({
+			id: 35,
+			name: "Distillery",
+			effect: "Stability +1",
+			stats: { stability: 1 },
+			cost: 20,
+			tier: 3
+		});
+		buildings.push({
+			id: 36,
+			name: "Schoolhouse",
+			effect: "Arcane +1",
+			stats: { arcane: 1 },
+			cost: 10,
+			tier: 1
+		});
+		buildings.push({
+			id: 37,
+			name: "Library",
+			effect: "Arcane +1",
+			stats: { arcane: 1 },
+			cost: 15,
+			tier: 2
+		});
+		buildings.push({
+			id: 38,
+			name: "University",
+			effect: "Arcane +1",
+			stats: { arcane: 1 },
+			cost: 20,
+			tier: 3
+		});
+		buildings.push({
+			id: 39,
+			name: "Arena",
+			effect: "Military +1",
+			stats: { military: 1 },
+			cost: 10,
+			tier: 1
+		});
+		buildings.push({
+			id: 40,
+			name: "Theater",
+			effect: "Community +1",
+			stats: { community: 1 },
+			cost: 15,
+			tier: 2
+		});
+		buildings.push({
+			id: 41,
+			name: "Colosseum",
+			effect: "Community +1",
+			stats: { community: 1 },
+			cost: 20,
+			tier: 3
+		});
+		buildings.push({
+			id: 42,
+			name: "Barracks",
+			effect: "Military +1, allows basic military strategy.",
+			stats: { military: 1 },
+			cost: 10,
+			tier: 1
+		});
+		buildings.push({
+			id: 43,
+			name: "Garrison",
+			effect: "Military +1, allows advanced military strategy.",
+			stats: { military: 1 },
+			cost: 15,
+			tier: 2
+		});
+		buildings.push({
+			id: 44,
+			name: "Fortress",
+			effect: "Military +1, allows expert military strategy.",
+			stats: { military: 1 },
+			cost: 20,
+			tier: 3
+		});
+		buildings.push({
+			id: 45,
+			name: "Watchtowers",
+			effect: "Military +1, increases city's defenses.",
+			stats: { military: 1 },
+			cost: 15,
+			tier: 1
+		});
+		buildings.push({
+			id: 46,
+			name: "City Walls",
+			effect: "Military +1, increases city's defenses.",
+			stats: { military: 1 },
+			cost: 20,
+			tier: 2
+		});
+		buildings.push({
+			id: 47,
+			name: "Fortifications",
+			effect: "Military +1, increases city's defenses.",
+			stats: { military: 1 },
+			cost: 25,
+			tier: 3
+		});
+		buildings.push({
+			id: 48,
+			name: "Farmstead",
+			effect: "Community +1",
+			stats: { community: 1 },
+			cost: 10,
+			tier: 1
+		});
+		buildings.push({
+			id: 49,
+			name: "Mill",
+			effect: "Community +1",
+			stats: { community: 1 },
+			cost: 15,
+			tier: 2
+		});
+		buildings.push({
+			id: 50,
+			name: "Confectionery",
+			effect: "Community +1",
+			stats: { community: 1 },
+			cost: 20,
+			tier: 3
+		});
+		buildings.push({
+			id: 51,
+			name: "Flower Garden",
+			effect: "Nature +1",
+			stats: { nature: 1 },
+			cost: 10,
+			tier: 1
+		});
+		buildings.push({
+			id: 52,
+			name: "Park",
+			effect: "Nature +1",
+			stats: { nature: 1 },
+			cost: 15,
+			tier: 2
+		});
+		buildings.push({
+			id: 53,
+			name: "Arboretum",
+			effect: "Nature +1",
+			stats: { nature: 1 },
+			cost: 20,
+			tier: 3
+		});
+		buildings.push({
+			id: 54,
+			name: "Town Hall",
+			effect: "Loyalty +1, Stability +1",
+			stats: { loyalty: 1, stability: 1 },
+			cost: 20,
+			tier: 1
+		});
+		buildings.push({
+			id: 55,
+			name: "Courthouse",
+			effect: "Loyalty +1, Stability +1",
+			stats: { loyalty: 1, stability: 1 },
+			cost: 25,
+			tier: 2
+		});
+		buildings.push({
+			id: 56,
+			name: "Ministry",
+			effect: "Stability +1, Relations +1",
+			stats: { stability: 1, relations: 1 },
+			cost: 30,
+			tier: 3
+		});
+		buildings.push({
+			id: 57,
+			name: "Prison",
+			effect: "Loyalty +1, allows prisoners.",
+			stats: { loyalty: 1 },
+			cost: 10,
+			tier: 1
+		});
+		buildings.push({
+			id: 58,
+			name: "Dungeon",
+			effect: "Loyalty +1, increases prisoners' willingness.",
+			stats: { loyalty: 1 },
+			cost: 15,
+			tier: 2
+		});
+		buildings.push({
+			id: 59,
+			name: "Interrogation Room",
+			effect: "Espionage +1, increases prisoners' willingness.",
+			stats: { espionage: 1 },
+			cost: 20,
+			tier: 3
+		});
+		buildings.push({
+			id: 60,
+			name: "Monument",
+			effect: "Loyalty +1",
+			stats: { loyalty: 1 },
+			cost: 10,
+			tier: 1
+		});
+		buildings.push({
+			id: 61,
+			name: "Graveyard",
+			effect: "Divine +1, Loyalty +1",
+			stats: { divine: 1, loyalty: 1 },
+			cost: 20,
+			tier: 1
+		});
+		buildings.push({
+			id: 62,
+			name: "Inn",
+			effect: "Economy +1, Relations +1",
+			stats: { economy: 1, relations: 1 },
+			cost: 20,
+			tier: 1
+		});
+		buildings.push({
+			id: 63,
+			name: "Orphanage",
+			effect: "Community +1, Loyalty +1",
+			stats: { community: 1, loyalty: 1 },
+			cost: 20,
+			tier: 1
+		});
+		buildings.push({
+			id: 64,
+			name: "Jail",
+			effect: "Stability +2",
+			stats: { stability: 2 },
+			cost: 20,
+			tier: 1
+		});
+		buildings.push({
+			id: 65,
+			name: "Brothel",
+			effect: "Community +1, Economy +1, Stability: -1",
+			stats: { community: 1, economy: 1, stability: -1 },
+			cost: 10,
+			tier: 1
+		});
+		buildings.push({
+			id: 66,
+			name: "City Square",
+			effect: "Relations +1",
+			stats: { relations: 1 },
+			cost: 10,
+			tier: 1
+		});
+		buildings.push({
+			id: 67,
+			name: "Tavern",
+			effect: "Economy +1, Loyalty +1",
+			stats: { economy: 1, loyalty: 1 },
+			cost: 20,
+			tier: 1
+		});
+
+		//#endregion
+
+		var columns = 5;
+
+		var calculateModifier = function (stat) {
+			var modifier = Math.floor(stat / 2) - 5;
+			return modifier;
+		};
+
+		var createAdvisors = function (advisors) {
+			var container = document.querySelector("#advisors div.container");
+			$(container).empty();
+
+			for (var i = 0; i < advisors.length; ++i) {
+				var advisor = advisors[i];
+
+				var advisorDiv = document.createElement("div");
+				advisorDiv.className = "advisor advisor-" + advisor.id;
+				$(advisorDiv).data("advisor", advisor);
+
+				var div;
+				var span;
+				var mod;
+
+				var card = document.createElement("div");
+				card.className = "card";
+
+				div = document.createElement("div");
+				div.className = "name";
+				div.appendChild(document.createTextNode(advisor.name));
+				card.appendChild(div);
+
+				div = document.createElement("div");
+				div.className = "image";
+				card.appendChild(div);
+
+				div = document.createElement("div");
+				div.className = "race-alignment";
+				span = document.createElement("span");
+				span.className = "race";
+				span.appendChild(document.createTextNode(advisor.race));
+				div.appendChild(span);
+				span = document.createElement("span");
+				span.className = "alignment";
+				span.appendChild(document.createTextNode(advisor.alignment));
+				div.appendChild(span);
+				card.appendChild(div);
+
+				div = document.createElement("div");
+				div.className = "abilities";
+				span = document.createElement("span");
+				span.setAttribute("data-ability", "strength");
+				mod = calculateModifier(advisor.strength);
+				if (mod >= 0) {
+					mod = "+" + mod;
+				}
+				span.setAttribute("data-mod", mod);
+				span.appendChild(document.createTextNode(advisor.strength));
+				div.appendChild(span);
+				span = document.createElement("span");
+				span.setAttribute("data-ability", "dexterity");
+				mod = calculateModifier(advisor.dexterity);
+				if (mod >= 0) {
+					mod = "+" + mod;
+				}
+				span.setAttribute("data-mod", mod);
+				span.appendChild(document.createTextNode(advisor.dexterity));
+				div.appendChild(span);
+				span = document.createElement("span");
+				span.setAttribute("data-ability", "constitution");
+				mod = calculateModifier(advisor.constitution);
+				if (mod >= 0) {
+					mod = "+" + mod;
+				}
+				span.setAttribute("data-mod", mod);
+				span.appendChild(document.createTextNode(advisor.constitution));
+				div.appendChild(span);
+				span = document.createElement("span");
+				span.setAttribute("data-ability", "intelligence");
+				mod = calculateModifier(advisor.intelligence);
+				if (mod >= 0) {
+					mod = "+" + mod;
+				}
+				span.setAttribute("data-mod", mod);
+				span.appendChild(document.createTextNode(advisor.intelligence));
+				div.appendChild(span);
+				span = document.createElement("span");
+				span.setAttribute("data-ability", "wisdom");
+				mod = calculateModifier(advisor.wisdom);
+				if (mod >= 0) {
+					mod = "+" + mod;
+				}
+				span.setAttribute("data-mod", mod);
+				span.appendChild(document.createTextNode(advisor.wisdom));
+				div.appendChild(span);
+				span = document.createElement("span");
+				span.setAttribute("data-ability", "charisma");
+				mod = calculateModifier(advisor.charisma);
+				if (mod >= 0) {
+					mod = "+" + mod;
+				}
+				span.setAttribute("data-mod", mod);
+				span.appendChild(document.createTextNode(advisor.charisma));
+				div.appendChild(span);
+				card.appendChild(div);
+
+				advisorDiv.appendChild(card);
+
+				div = document.createElement("div");
+				div.className = "position";
+
+				var select = document.createElement("select");
+				select.setAttribute("data-advisor", advisor.id);
+
+				var option = document.createElement("option");
+				option.value = "";
+				option.text = "-- Select --";
+				select.options.add(option);
+
+				for (var j = 0; j < skills.length; ++j) {
+					var skill = skills[j];
+					option = document.createElement("option");
+					option.value = skill.value;
+					option.text = skill.name;
+					select.options.add(option);
+				}
+
+				div.appendChild(select);
+
+				advisorDiv.appendChild(div);
+
+				container.appendChild(advisorDiv);
+			}
+		};
+
+		var createBuildings = function (buildings) {
+			var tbody = document.querySelector("#buildings table tbody");
+			$(tbody).empty();
+			for (var i = 0; i < buildings.length; ++i) {
+				var building = buildings[i];
+
+				var tr = document.createElement("tr");
+				tr.id = "building" + building.id;
+				tr.setAttribute("data-cost", building.cost);
+				for (var stat in building.stats) {
+					tr.setAttribute("data-" + stat, building.stats[stat]);
+				}
+				tr.className = "tier" + building.tier;
+
+				var td;
+
+				td = document.createElement("td");
+				td.appendChild(document.createTextNode(building.name));
+				tr.appendChild(td);
+
+				td = document.createElement("td");
+				td.appendChild(document.createTextNode(building.effect));
+				tr.appendChild(td);
+
+				td = document.createElement("td");
+				td.appendChild(document.createTextNode(building.cost));
+				tr.appendChild(td);
+
+				td = document.createElement("td");
+				var input = document.createElement("input");
+				input.type = "checkbox";
+				$(input).data("building", building);
+				td.appendChild(input);
+				tr.appendChild(td);
+
+				tbody.appendChild(tr);
+			}
+		};
+
+		var createPolicies = function (policies) {
+			var container = document.querySelector("#policies div.container");
+			$(container).empty();
+
+			var tr;
+			for (var i = 0; i < policies.length; ++i) {
+				var policy = policies[i];
+
+				var policyDiv = document.createElement("div");
+				policyDiv.className = "policy policy-" + policy.id;
+				$(policyDiv).data("policy", policy);
+
+				var div;
+				var span;
+
+				var card = document.createElement("div");
+				card.className = "card";
+
+				div = document.createElement("div");
+				div.className = "name";
+				div.appendChild(document.createTextNode(policy.name));
+				card.appendChild(div);
+
+				div = document.createElement("div");
+				div.className = "category";
+				div.appendChild(document.createTextNode(policy.category));
+				card.appendChild(div);
+
+				div = document.createElement("div");
+				div.className = "infobox";
+				span = document.createElement("span");
+				span.className = "flavor-text";
+				span.appendChild(document.createTextNode(policy.flavorText));
+				div.appendChild(span);
+				span = document.createElement("span");
+				span.className = "stats";
+				// TODO: Stats
+				//span.appendChild(document.createTextNode(advisor.stats));
+				div.appendChild(span);
+				card.appendChild(div);
+
+				policyDiv.appendChild(card);
+
+				container.appendChild(policyDiv);
+			}
+		};
+
+		var createSkills = function () {
+			var tbody = document.querySelector("#skills tbody");
+			$(tbody).empty();
+			for (var i = 0; i < skills.length; ++i) {
+				var skill = skills[i];
+
+				var tr = document.createElement("tr");
+				tr.className = skill.value;
+
+				var td;
+				var span;
+				var input;
+
+				td = document.createElement("td");
+				td.appendChild(document.createTextNode(skill.name));
+				td.appendChild(document.createElement("br"));
+				span = document.createElement("span");
+				span.className = "position";
+				span.appendChild(document.createTextNode(skill.position));
+				td.appendChild(span);
+				tr.appendChild(td);
+
+				td = document.createElement("td");
+				span = document.createElement("span");
+				span.className = "advisor";
+				td.appendChild(span);
+				tr.appendChild(td);
+
+				td = document.createElement("td");
+				span = document.createElement("span");
+				span.className = "input";
+				input = document.createElement("input");
+				input.type = "number"
+				input.step = "1";
+				input.className = "input-advisor";
+				span.appendChild(input);
+				td.appendChild(span);
+				tr.appendChild(td);
+
+				td = document.createElement("td");
+				span = document.createElement("span");
+				span.className = "input";
+				input = document.createElement("input");
+				input.type = "number"
+				input.step = "1";
+				input.className = "input-buildings";
+				span.appendChild(input);
+				td.appendChild(span);
+				tr.appendChild(td);
+
+				td = document.createElement("td");
+				span = document.createElement("span");
+				span.className = "input";
+				input = document.createElement("input");
+				input.type = "number"
+				input.step = "1";
+				input.className = "input-policies";
+				span.appendChild(input);
+				td.appendChild(span);
+				tr.appendChild(td);
+
+				td = document.createElement("td");
+				span = document.createElement("span");
+				span.className = "input";
+				input = document.createElement("input");
+				input.type = "number"
+				input.step = "1";
+				input.className = "input-luxury";
+				span.appendChild(input);
+				td.appendChild(span);
+				tr.appendChild(td);
+
+				td = document.createElement("td");
+				span = document.createElement("span");
+				span.className = "input";
+				input = document.createElement("input");
+				input.type = "number"
+				input.step = "1";
+				input.className = "input-other";
+				span.appendChild(input);
+				td.appendChild(span);
+				tr.appendChild(td);
+
+				td = document.createElement("td");
+				span = document.createElement("span");
+				span.className = "input total";
+				input = document.createElement("input");
+				input.type = "number"
+				input.step = "1";
+				input.className = "input-total";
+				span.appendChild(input);
+				td.appendChild(span);
+				tr.appendChild(td);
+
+				tbody.appendChild(tr);
+			}
+		};
+
+		var getSelectedAdvisors = function () {
+			var selectedAdvisors = [];
+			for (var i = 0; i < skills.length; ++i) {
+				var option = $("#advisors div.advisor select option[value=\"" + skills[i].value + "\"]:selected");
+				if (option.length > 0) {
+					selectedAdvisors.push(option.parent().attr("data-advisor"));
+				} else {
+					selectedAdvisors.push("");
+				}
+			}
+			return selectedAdvisors.join();
+		};
+
+		var getBuiltBuildings = function () {
+			var selectedBuildings = [];
+			$("#buildings table tbody tr td input:checked").each(function (i, el) {
+				var building = $(el).data("building");
+				selectedBuildings.push(building.id);
+			});
+			return selectedBuildings.join();
+		};
+
+		var parseQueryString = function () {
+			var input;
+
+			var usp = new URLSearchParams(location.search);
+
+			if (usp.has("u")) {
+				var u = usp.get("u");
+				input = document.getElementById("inputUnrest");
+				input.value = u;
+
+			}
+
+			if (usp.has("a")) {
+				var a = usp.get("a");
+				if (a) {
+					var advisorList = a.split(",");
+					setSelectedAdvisors(advisorList);
+				}
+			}
+
+			if (usp.has("b")) {
+				var b = usp.get("b");
+				if (b) {
+					var buildingList = b.split(",");
+					setBuiltBuildings(buildingList);
+				}
+			}
+		};
+
+		var setBuiltBuildings = function (buildingList) {
+			if (buildingList) {
+				$("#buildings table tbody tr td input").each(function (i, el) {
+					el.checked = false;
+				});
+
+				for (var i = 0; i < buildingList.length; ++i) {
+					var input = document.querySelector("#building" + buildingList[i] + " td input");
+					input.checked = true;
+				}
+			}
+		};
+
+		var setSelectedAdvisors = function (advisorList) {
+			console.log("advisorList", advisorList);
+			if (advisorList) {
+				var index = 0;
+				for (var i = 0; i < skills.length; ++i) {
+					var advisor = advisorList[index++];
+					if (advisor) {
+						$("#advisors div.advisor select[data-advisor=\"" + advisor + "\"]").val(skills[i].value);
+					}
+				}
+			}
+		};
+
+		var updateStats = function () {
+			var input;
+
+			$("#skills input.input-advisor").val("0");
+			$("#skills input.input-buildings").val("0");
+			$("#skills input.input-policies").val("0");
+			$("#skills input.input-luxury").val("0");
+			$("#skills input.input-other").val("0");
+			$("#skills input.input-total").val("0");
+
+			for (var i = 0; i < skills.length; ++i) {
+				var skill = skills[i];
+				var tr = $("#skills tr." + skill.value);
+
+				var advisor = $("#advisors div.advisor select option[value=\"" + skill.value + "\"]:selected").parents("div.advisor").data("advisor");
+				if (advisor) {
+					$("#skills tr." + skill.value + " td span.advisor").text(advisor.name);
+					input = document.querySelector("#skills tr." + skill.value + " input.input-advisor");
+					input.value = input.valueAsNumber + calculateModifier(advisor[skill.ability]);
+				} else {
+					$("#skills tr." + skill.value + " td span.advisor").empty();
+				}
+			}
+
+
+			$("#buildings table tbody tr td input:checked").each(function (i, el) {
+				var building = $(el).data("building");
+				for (var stat in building.stats) {
+					input = document.querySelector("#skills tr." + stat + " input.input-buildings");
+					input.value = input.valueAsNumber + building.stats[stat];
+				}
+			});
+
+			$("#skills tbody tr").each(function (i, el) {
+				var total = 0;
+				var input;
+
+				input = el.querySelector(".input-advisor");
+				total += input.valueAsNumber;
+
+				input = el.querySelector(".input-buildings");
+				total += input.valueAsNumber;
+
+				input = el.querySelector(".input-policies");
+				total += input.valueAsNumber;
+
+				input = el.querySelector(".input-luxury");
+				total += input.valueAsNumber;
+
+				input = el.querySelector(".input-other");
+				total += input.valueAsNumber;
+
+				input = el.querySelector(".input-total");
+				input.value = total;
+			});
+
+			var luxury = 0;
+			input = document.getElementById("inputLuxury");
+			input.value = luxury;
+
+			var kingdomDC = 8 + luxury;
+			input = document.getElementById("inputKingdomDC");
+			input.value = kingdomDC;
+
+
+			input = document.getElementById("inputUnrest");
+			var unrest = input.valueAsNumber;
+
+			var url = "kingdom.html?v=1.0&u=" + unrest + "&a=" + getSelectedAdvisors() + "&b=" + getBuiltBuildings();
+			history.replaceState(null, "Kingdom", url);
+
+		};
+
+		$(function () {
+			createSkills();
+			createAdvisors(advisors);
+			createPolicies(policies);
+			createBuildings(buildings);
+
+			parseQueryString();
+
+			$("#advisors div.advisor select").on({
+				"change": function (e) {
+					$("#advisors div.advisor select").each(function () {
+						if (e.target != this) {
+							if ($(e.target).val() == $(this).val()) {
+								$(this).val("");
+							}
+						}
+					});
+					updateStats();
+				}
+			});
+
+			$("#buildings table tbody tr td input").on({
+				"click": function () {
+					updateStats();
+				}
+			});
+
+			$("#buildings table tbody tr td input").on({
+				"click": function () {
+					updateStats();
+				}
+			});
+
+			updateStats();
+		});
+
+		//Unrest 	Modifier
+		//Serene + 1
+		//Stable 	0
+		//Worried - 1
+		//Troubled - 2
+		//Rioting - 3
+		//Crumbling - 4
+	</script>
+</body>
+</html>
