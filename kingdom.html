@@ -61,6 +61,17 @@
 			appearance: textfield;
 		}
 
+		#main-stats th,
+		#main-stats td {
+			padding: 5px 10px;
+		}
+
+		#main-stats td.kingdomdc,
+		#main-stats td.luxury {
+			font-size: 2rem;
+			text-align: center;
+		}
+
 		#skills input[type=number] {
 		}
 
@@ -375,7 +386,6 @@
 			background-position: center;
 			background-size: cover;
 		}
-		
 	</style>
 </head>
 <body>
@@ -393,14 +403,21 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>
-						<input id="inputKingdomDC" type="number" step="1" value="8" />
+					<td class="kingdomdc">
+						<span id="valueKingdomDC">8</span>
+					</td>
+					<td class="luxury">
+						<span id="valueLuxury">0</span>
 					</td>
 					<td>
-						<input id="inputLuxury" type="number" step="1" value="0" />
-					</td>
-					<td>
-						<input id="inputUnrest" type="number" step="1" value="2" />
+						<select id="selectUnrest">
+							<option value="1">Serene (+1)</option>
+							<option value="0" selected>Stable (+0)</option>
+							<option value="-1">Worried (-1)</option>
+							<option value="-2">Troubled (-2)</option>
+							<option value="-3">Rioting (-3)</option>
+							<option value="-4">Crumbling (-4)</option>
+						</select>
 					</td>
 				</tr>
 			</tbody>
@@ -1671,8 +1688,8 @@
 
 			if (usp.has("u")) {
 				var u = usp.get("u");
-				input = document.getElementById("inputUnrest");
-				input.value = u;
+				var select = document.getElementById("selectUnrest");
+				$(select).val(u);
 
 			}
 
@@ -1788,6 +1805,7 @@
 
 		var updateStats = function () {
 			var input;
+			var span;
 
 			$("#skills input.input-advisor").val("0");
 			$("#skills input.input-buildings").val("0");
@@ -1847,16 +1865,18 @@
 			});
 
 			var luxury = 0;
-			input = document.getElementById("inputLuxury");
-			input.value = luxury;
+			$("#skills tr input.input-luxury").each(function (i, el) {
+				luxury += el.valueAsNumber;
+			});
+			span = document.getElementById("valueLuxury");
+			span.textContent = luxury;
 
 			var kingdomDC = 8 + luxury;
-			input = document.getElementById("inputKingdomDC");
-			input.value = kingdomDC;
+			span = document.getElementById("valueKingdomDC");
+			span.textContent = kingdomDC;
 
-
-			input = document.getElementById("inputUnrest");
-			var unrest = input.valueAsNumber;
+			var select = document.getElementById("selectUnrest");
+			var unrest = $(select).val();
 
 			var url = "kingdom.html?v=1.0&u=" + unrest + "&l=" + getLuxeries() + "&o=" + getOthers() + "&a=" + getSelectedAdvisors() + "&p=" + getSelectedPolicies() + "&b=" + getBuiltBuildings();
 			history.replaceState(null, "Kingdom", url);
@@ -1873,6 +1893,12 @@
 			$("#skills input.input-other").val("0");
 
 			parseQueryString();
+
+			$("#selectUnrest").on({
+				"change": function () {
+					updateStats();
+				}
+			});
 
 			$("#skills tbody tr td input.input-luxury").on({
 				"change": function () {
@@ -1921,14 +1947,6 @@
 
 			updateStats();
 		});
-
-		//Unrest 	Modifier
-		//Serene + 1
-		//Stable 	0
-		//Worried - 1
-		//Troubled - 2
-		//Rioting - 3
-		//Crumbling - 4
 	</script>
 </body>
 </html>
