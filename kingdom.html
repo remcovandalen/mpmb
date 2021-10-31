@@ -56,9 +56,16 @@
 			margin: 0 auto 20px;
 		}
 
-		#main-stats input[type=number],
 		#skills input[type=number] {
 			appearance: textfield;
+		}
+
+		#skills input[type=number]::-webkit-inner-spin-button,
+		#skills input[type=number]::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			margin: 0;
 		}
 
 		#main-stats th,
